@@ -17,5 +17,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::post("/book/{id}/review", [BookController::class, "review"])->name("book.review");
+Route::get("/book/{id}/review", [BookController::class, "review"])->name("book.review");
 Route::resource("book", BookController::class);

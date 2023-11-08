@@ -12,7 +12,7 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -37,6 +37,7 @@ class ReviewController extends Controller
     public function show(Review $review)
     {
         //
+        return view("books.showDetail", compact("review"));
     }
 
     /**

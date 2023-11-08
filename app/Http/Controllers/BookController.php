@@ -17,14 +17,22 @@ class BookController extends Controller
     public function review(Request $request, string $id)
     {
         $book = Book::find($id);
-        $detailBook = DB::table("books")
-                        ->join("reviews", "books.bookID", "=", "reviews.bookID")
-                        ->where("books.bookID", "=", $request->get("bookID"))
-                        ->select("books.*", "reviews.*" )
-                        ->get();
-        $check = Storage::disk("public")->exists($book->coverImageURL);
-        $review = Review::find($request->get("selectReviewID"));
-        return view("books.showDetail", compact(["detailBook", "check", "review"]));
+        $check_PathImage = Storage::disk("public")->exists($book->coverImageURL);
+        $bookInReview = DB::table("reviews")->where("bookID", "=", $id)->select("reviews.*")->first();
+        if($bookInReview == null){
+            return view("books.show", compact(["book", "check_PathImage"]));
+        }
+        else{
+            $review = Review::find($request->get("selectReviewID"));
+            $detailBook = DB::table("books")
+                            ->join("reviews", "books.bookID", "=", "reviews.bookID")
+                            ->where("books.bookID", "=", $id)
+                            ->select("books.*", "reviews.*" )
+                            ->get();
+                            // print_r($detailBook);
+            return view("books.showDetail", compact("check_PathImage", "detailBook", "review" ));
+        }
+        
     }
     public function index()
     {

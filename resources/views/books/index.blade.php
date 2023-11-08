@@ -43,7 +43,7 @@
                 <td style="word-wrap: break-word;" scope="row">{{$book->ISBN}}</td>
                 <td style="word-wrap: break-word;" scope="row">{{$book->coverImageURL }}</td>
                 <td class="d-flex justify-content-between align-items-center" role="group">
-                    <a class="btn btn-primary me-2" href="{{route('book.show', $book->bookID)}}"><i class="fa-solid fa-circle-info"></i></a>
+                    <a class="btn btn-primary me-2" href="{{route('book.review', $book->bookID)}}"><i class="fa-solid fa-circle-info"></i></a>
                     <a class="btn btn-warning me-2" href="{{route('book.edit', $book->bookID)}}"><i class="fa-solid fa-pen-to-square"></i></a>
                     <button type="button" class="btn btn-danger border-0" data-bs-toggle="modal" data-bs-target="#modalId{{$book->bookID}}"><i class="fa-solid fa-trash"></i></button>
                 </td>
