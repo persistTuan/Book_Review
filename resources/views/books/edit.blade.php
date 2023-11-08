@@ -17,13 +17,13 @@
     <div class="row w-100">
         <div style="background-color: #CBCBCB;" class="image rounded-3 col-4 d-flex justify-content-center align-items-center flex-column">
             @if($check)
-            <img src="{{asset('/storage/'. $book->coverImageURL)}}" class="img-fluid border-danger border-3" alt="ẢNH ĐANG Ở ĐÂY">
+            <img id="image-preview" src="{{asset('/storage/'. $book->coverImageURL)}}" class="img-fluid border-danger border-3" alt="ẢNH ĐANG Ở ĐÂY">
             @else
-            <img src="{{asset('/storage/images/user.png')}}" class="img-fluid border-danger border-3" alt="ẢNH ĐANG Ở ĐÂY">
+            <img id="image-preview"  src="{{asset('/storage/images/user.png')}}" class="img-fluid border-danger border-3" alt="ẢNH ĐANG Ở ĐÂY">
             @endif
-            <div class="mt-3 ">
+            <div class="mt-3 "> 
                 <!-- <label for="exampleInputEmail1" class="form-label">Choose file</label> -->
-                <input accept="image/jpeg, image/png, image/svg, image/gif" type="file" name="image" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input accept="image/jpeg, image/png, image/svg, image/gif" type="file" name="image" class="form-control" id="file-input" aria-describedby="emailHelp">
                 <span>Accept: jpeg, png, svg, gif</span>
                 @if($errors->has("image"))
                     <p class="my-3" style="color:red; ">Image là bắt buộc</p>
