@@ -63,7 +63,8 @@
             </div>
             <div class="mb-3 ">
                 <!-- <label for="exampleInputEmail1" class="form-label">Choose file</label> -->
-                <input accept="image/jpeg, image/png, image/svg, image/gif" value="old('image')" type="file" name="image" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <img id="image-preview" src="" class="img-fluid border-danger border-3" alt="ẢNH ĐANG Ở ĐÂY">
+                <input accept="image/jpeg, image/png, image/svg, image/gif" value="old('image')"  type="file" name="image" class="form-control" id="file-input" aria-describedby="emailHelp">
                 <span>Accept: jpeg, png, svg, gif</span>
                 @if($errors->has("image"))
                     <span class="my-3" style="color:red; ">Image là bắt buộc</span>
