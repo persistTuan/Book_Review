@@ -62,7 +62,7 @@ class BookController extends Controller
             "genre" => "bail|required|string|not_regex:/[0-9]/",
             "publicationYear" => "bail|required|date_format:Y",
             "ISBN" => "required|regex:/^ISBN-\d{12}$/",
-            "image" => "bail|required|image",
+            "image" => "bail|required|image|nullable",
         ]);
 
         $image = $request->file("image");
@@ -114,19 +114,18 @@ class BookController extends Controller
             "author" => "bail|required|string|not_regex:/[0-9]/",
             "genre" => "bail|required",
             "publicationYear" => "bail|required|date_format:Y",
-            "ISBN" => "required|not_regex:/^ISBN-\d{12}/",
-            "image" => "bail|required|image",
+            "ISBN" => "required|regex:/^ISBN-\d{12}$/",
         ]);
-
+       
         $image = $request->file("image");
-        $path = "";
-        $content = $image->getContent();
-        if(!Storage::disk("public")->exists($book->coverImageURL)){
-            $path = $image->storePublicly("images", "public");
-            $book->coverImageURL = $path;
-        }
-        else{
-            Storage::disk("public")->put($book->coverImageURL, $content);
+        if($image != null){
+            $content = $image->getContent();
+            if (!Storage::disk("public")->exists($book->coverImageURL)) {
+                $path = $image->storePublicly("images", "public");
+                $book->coverImageURL = $path;
+            } else {
+                Storage::disk("public")->put($book->coverImageURL, $content);
+            }
         }
         $book->title = $request->get("title");
         $book->author = $request->get("author");
@@ -136,6 +135,7 @@ class BookController extends Controller
         $book->updated_at = now();
         $book->save();
         return redirect()->route("book.index");
+        
 
     }
 
