@@ -10,10 +10,4 @@ class Review extends Model
 {
     use HasFactory;
     protected $primaryKey = "ReviewID";
-    public function user() : BelongsTo{
-        return $this->belongsTo(User::class);
-    }
-    public function book():BelongsTo{
-        return $this->belongsTo(Book::class);
-    }
 }
