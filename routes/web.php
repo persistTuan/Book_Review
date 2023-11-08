@@ -18,4 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get("/book/{id}/review", [BookController::class, "review"])->name("book.review");
-Route::resource("book", BookController::class);
+Route::resource("book", BookController::class); 
