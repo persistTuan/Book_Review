@@ -76,9 +76,11 @@ class BookController extends Controller
                 $book->coverImageURL = $path;
             } else {
                 Storage::disk("public")->put($book->coverImageURL, $content);
-                $book->coverImageURL = "Do not have image";
             }
         }  
+        else{
+            $book->coverImageURL = "Do not have image";
+        }
         $book->title = $request->get("title");
         $book->author = $request->get("author");
         $book->genre = $request->get("genre");
